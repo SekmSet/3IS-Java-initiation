@@ -125,7 +125,7 @@ new FormModel {
 			add( new FormComponent( "javax.swing.JButton" ) {
 				name: "button5"
 				"text": "Faire un virement"
-				addEvent( new FormEvent( "javax.swing.event.ChangeListener", "stateChanged", "actionVirement", true ) )
+				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "actionVirement", true ) )
 			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
 				"value": "cell 0 9 9 1"
 			} )

@@ -32,6 +32,7 @@ public class Depot extends JFrame {
     public Depot() {
         initComponents();
     }
+
     public Depot(Client nom, ArrayList<Client> liste) {
         this.nom = nom;
         this.liste = liste;
@@ -125,9 +126,10 @@ public class Depot extends JFrame {
         int convertStringToInt = Integer.parseInt(montant);
 
         if(nom.getMaxDepot() >= convertStringToInt) {
-            this.nom.setSolde(nom.getSolde(), convertStringToInt, "depot");
+            this.nom.setSolde(convertStringToInt, "depot");
             nom.setNbrTransactions(nom.getNbrTransactions());
             label_err.setText("Dépôt effectué");
+            Home.depot.setVisible(false);
         } else {
             label_err.setText("Le dépôt ne peux pas être effectué");
         }

@@ -44,11 +44,11 @@ public class Client {
         return solde;
     }
 
-    public void setSolde(int solde, int montant, String action) {
+    public void setSolde(int montant, String action) {
         if (action.equals("retrait")){
-            this.solde = solde - montant;
+            this.solde = this.solde - montant;
         } else {
-            this.solde = solde + montant;
+            this.solde = this.solde + montant;
         }
     }
 

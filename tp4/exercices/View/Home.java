@@ -4,11 +4,11 @@
 
 package exercices.View;
 
-import javax.swing.event.*;
 import exercices.Model.Client;
 import net.miginfocom.swing.MigLayout;
 
 import javax.swing.*;
+import javax.swing.event.ChangeEvent;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.util.ArrayList;
@@ -19,6 +19,10 @@ import java.util.ArrayList;
 public class Home extends JFrame {
 
     public static ArrayList<Client> listeClient = new ArrayList<>();
+    public static Depot depot;
+    public static Retrait retrait;
+    public static Transfert transfert;
+    public static CreateUser createUser;
 
     public Home() {
         initComponents();
@@ -30,7 +34,7 @@ public class Home extends JFrame {
         Client user = getClient(nom);
 
         if(user != null) {
-            Depot depot = new Depot(user, listeClient);
+            depot = new Depot(user, listeClient);
             depot.setVisible(true);
         }
     }
@@ -41,20 +45,8 @@ public class Home extends JFrame {
         Client user = getClient(nom);
 
         if(user != null) {
-            Retrait retrait = new Retrait(user, listeClient);
+            retrait = new Retrait(user, listeClient);
             retrait.setVisible(true);
-        }
-    }
-
-    private void actionVirement(ChangeEvent e) {
-        // TODO add your code here
-        String nom = textField1.getText();
-        Client user = getClient(nom);
-
-        if (user != null) {
-            // todo add message d'erreur
-            Transfert transfert = new Transfert(user, listeClient);
-            transfert.setVisible(true);
         }
     }
 
@@ -73,8 +65,20 @@ public class Home extends JFrame {
 
     private void creerClient(ActionEvent e) {
         // TODO add your code here
-        CreateUser createUserView = new CreateUser();
-        createUserView.setVisible(true);
+        createUser = new CreateUser();
+        createUser.setVisible(true);
+    }
+
+    private void actionVirement(ActionEvent e) {
+        // TODO add your code here
+        String nom = textField1.getText();
+        Client user = getClient(nom);
+
+        if (user != null) {
+            // todo add message d'erreur
+            transfert = new Transfert(user, listeClient);
+            transfert.setVisible(true);
+        }
     }
 
     private void initComponents() {
@@ -192,14 +196,14 @@ public class Home extends JFrame {
 
         //---- button5 ----
         button5.setText("Faire un virement");
-        button5.addChangeListener(e -> actionVirement(e));
+        button5.addActionListener(e -> actionVirement(e));
         contentPane.add(button5, "cell 0 9 9 1");
         pack();
         setLocationRelativeTo(getOwner());
         // JFormDesigner - End of component initialization  //GEN-END:initComponents
     }
 
-    private void afficherClient(ActionEvent e) {
+    public void afficherClient(ActionEvent e) {
         // TODO add your code here
         String nom = textField1.getText();
         Client user = getClient(nom);

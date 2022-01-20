@@ -133,10 +133,11 @@ public class CreateUser extends JFrame {
             label_error.setText("Nouveau client créé !");
             Home.listeClient.add(client);
 
-
             textField1.setText("");
             textField2.setText("");
             textField3.setText("");
+            textField4.setText("");
+            Home.createUser.setVisible(false);
         }
     }
 

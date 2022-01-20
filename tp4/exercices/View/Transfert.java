@@ -133,21 +133,25 @@ public class Transfert extends JFrame {
 
     private void valideTransfert(ActionEvent e) {
         // TODO add your code here
+        String nomCreancier = textField1.getText();
         String nomBeneficiaire = textField2.getText();
         String montant = textField3.getText();
         int convertStringToInt = Integer.parseInt(montant);
-        Client isExist = getClient(nomBeneficiaire);
+        Client isExistBenef = getClient(nomBeneficiaire);
+        Client isExistCreancier = getClient(nomCreancier);
 
-        if(isExist == null) {
+        if(isExistBenef == null || isExistCreancier == null) {
             label_err.setText("Déstinataire invalid");
             return;
         }
 
-        if (-nom.getMontant() <= (this.solde - convertStringToInt)) {
-            nom.setSolde(this.solde, convertStringToInt, "retrait");
-            isExist.setSolde(isExist.getSolde(),convertStringToInt, "depot");
+        if (-nom.getMontant() <= (solde - convertStringToInt)) { // todo check
+            nom.setSolde(convertStringToInt, "retrait");
+            isExistBenef.setSolde(convertStringToInt, "depot");
             label_err.setText("Votre virement a bien été effectué");
-
+            textField2.setText("");
+            textField3.setText("");
+            Home.transfert.setVisible(false);
         } else {
             label_err.setText("Vous ne pouvez un versement de " + convertStringToInt + "euros.");
         }

@@ -128,9 +128,10 @@ public class Retrait extends JFrame {
         int convertStringToInt = Integer.parseInt(montant);
 
         if(-nom.getMontant() <= (this.solde - convertStringToInt)) {
-            this.nom.setSolde(nom.getSolde(), convertStringToInt, "retrait");
+            this.nom.setSolde(convertStringToInt, "retrait");
             nom.setNbrTransactions(nom.getNbrTransactions());
             label_err.setText("Retrait effectué");
+            Home.retrait.setVisible(false);
         } else {
             label_err.setText("Retrait impossible");
         }
