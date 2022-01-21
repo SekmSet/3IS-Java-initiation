@@ -8,8 +8,10 @@ import java.awt.*;
 import java.awt.event.*;
 import java.util.ArrayList;
 import javax.swing.*;
+import java.time.*;
 
 import exercices.Model.Client;
+import exercices.Model.HistoriqueVirement;
 import net.miginfocom.swing.*;
 
 /**
@@ -30,7 +32,7 @@ public class Transfert extends JFrame {
     private Client nom;
     private ArrayList<Client> liste;
     private int solde;
-
+    private LocalDate dateNow = LocalDate.now();
     private String colorGreen = "#1F6A20";
     private String colorRed = "#CD1818";
     private String colorOrange = "#EA5C2B";
@@ -155,6 +157,10 @@ public class Transfert extends JFrame {
             nom.setSolde(convertStringToInt, "retrait");
             isExistBenef.setSolde(convertStringToInt, "depot");
             Home.transfert.setVisible(false);
+
+            HistoriqueVirement historiqueVir = new HistoriqueVirement(isExistCreancier, nomBeneficiaire, montant, dateNow);
+            Home.listeHistoriqueVirement.add(historiqueVir);
+
         } else {
             label_err.setForeground(Color.decode(this.colorRed));
             label_err.setText("Vous ne pouvez effectuer un versement de " + convertStringToInt + " euros.");

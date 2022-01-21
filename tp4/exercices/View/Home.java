@@ -5,12 +5,13 @@
 package exercices.View;
 
 import exercices.Model.Client;
+import exercices.Model.HistoriqueVirement;
 import net.miginfocom.swing.MigLayout;
 
 import javax.swing.*;
-import javax.swing.event.ChangeEvent;
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 /**
@@ -19,6 +20,8 @@ import java.util.ArrayList;
 public class Home extends JFrame {
 
     public static ArrayList<Client> listeClient = new ArrayList<>();
+    public static ArrayList<HistoriqueVirement> listeHistoriqueVirement = new ArrayList<>();
+    public static HistoriqueVirementView historiqueVirementView;
     public static Depot depot;
     public static Retrait retrait;
     public static Transfert transfert;
@@ -88,6 +91,31 @@ public class Home extends JFrame {
         }
     }
 
+    private void actionHistoriqueVirement(ActionEvent e) {
+        // TODO add your code here
+        // TODO add your code here
+        String nom = textField1.getText();
+        Client user = getClient(nom);
+
+        if (user != null) {
+            ArrayList<HistoriqueVirement> listeHistoriquVirementView =  getClientHistoriqueVirement(user);
+
+            historiqueVirementView = new HistoriqueVirementView(listeHistoriquVirementView);
+            historiqueVirementView.setVisible(true);
+
+        }
+    }
+
+    private ArrayList<HistoriqueVirement> getClientHistoriqueVirement(Client client){
+        ArrayList<HistoriqueVirement> myHistorique = new ArrayList<>();
+        for (int i = 0; i < listeHistoriqueVirement.size(); i++){
+            if(listeHistoriqueVirement.get(i).getNomCreancier().equals(client.getNom())){
+                myHistorique.add(listeHistoriqueVirement.get(i));
+            }
+        }
+        return myHistorique;
+    }
+
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
         label10 = new JLabel();
@@ -109,6 +137,7 @@ public class Home extends JFrame {
         label6_status = new JLabel();
         button4 = new JButton();
         button5 = new JButton();
+        button6 = new JButton();
 
         //======== this ========
         var contentPane = getContentPane();
@@ -125,6 +154,7 @@ public class Home extends JFrame {
             "[fill]" +
             "[fill]",
             // rows
+            "[]" +
             "[]" +
             "[]" +
             "[]" +
@@ -205,6 +235,11 @@ public class Home extends JFrame {
         button5.setText("Faire un virement");
         button5.addActionListener(e -> actionVirement(e));
         contentPane.add(button5, "cell 0 9 9 1");
+
+        //---- button6 ----
+        button6.setText("Voir mon historique des virements");
+        button6.addActionListener(e -> actionHistoriqueVirement(e));
+        contentPane.add(button6, "cell 0 10 9 1");
         pack();
         setLocationRelativeTo(getOwner());
         // JFormDesigner - End of component initialization  //GEN-END:initComponents
@@ -270,5 +305,6 @@ public class Home extends JFrame {
     private JLabel label6_status;
     private JButton button4;
     private JButton button5;
+    private JButton button6;
     // JFormDesigner - End of variables declaration  //GEN-END:variables
 }
