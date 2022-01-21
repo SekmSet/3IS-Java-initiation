@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import javax.swing.*;
 import java.time.*;
 
+import exercices.Model.Bank;
 import exercices.Model.Client;
 import exercices.Model.HistoriqueVirement;
 import net.miginfocom.swing.*;
@@ -31,6 +32,7 @@ public class Transfert extends JFrame {
     // JFormDesigner - End of variables declaration  //GEN-END:variables
     private Client nom;
     private ArrayList<Client> liste;
+    private ArrayList<Bank> listeBanque;
     private int solde;
     private LocalDate dateNow = LocalDate.now();
     private String colorGreen = "#1F6A20";
@@ -41,10 +43,11 @@ public class Transfert extends JFrame {
         initComponents();
     }
 
-    public Transfert(Client nom, ArrayList<Client> liste) {
+    public Transfert(Client nom, ArrayList<Client> liste, ArrayList<Bank> listeBanque) {
         initComponents();
         this.nom = nom;
         this.liste = liste;
+        this.listeBanque = listeBanque;
     }
 
     private void initComponents() {
@@ -81,7 +84,10 @@ public class Transfert extends JFrame {
             "[]"));
 
         //---- label1 ----
-        label1.setText("Philippot Bank");
+        if(this.nom !=  null) {
+            label1.setText(this.nom.getBanque().getNom());
+        }
+
         label1.setFont(label1.getFont().deriveFont(label1.getFont().getStyle() | Font.BOLD, label1.getFont().getSize() + 10f));
         contentPane.add(label1, "cell 0 0 2 1");
 
@@ -108,34 +114,9 @@ public class Transfert extends JFrame {
         button1.setText("Envoyer");
         button1.addActionListener(e -> valideTransfert(e));
         contentPane.add(button1, "cell 1 9 3 1");
-
         pack();
         setLocationRelativeTo(getOwner());
         // JFormDesigner - End of component initialization  //GEN-END:initComponents
-    }
-
-    public Client getNom() {
-        return nom;
-    }
-
-    public void setNom(Client nom) {
-        this.nom = nom;
-    }
-
-    public ArrayList<Client> getListe() {
-        return liste;
-    }
-
-    public void setListe(ArrayList<Client> liste) {
-        this.liste = liste;
-    }
-
-    public int getSolde() {
-        return solde;
-    }
-
-    public void setSolde(int solde) {
-        this.solde = solde;
     }
 
     private void valideTransfert(ActionEvent e) {

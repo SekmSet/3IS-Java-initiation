@@ -76,15 +76,18 @@ public class Depot extends JFrame {
 
         //---- label1 ----
         label1.setText("D\u00e9p\u00f4t");
+        label1.setFont(label1.getFont().deriveFont(label1.getFont().getStyle() | Font.BOLD, label1.getFont().getSize() + 10f));
         contentPane.add(label1, "cell 2 0 3 1");
 
         //---- label2 ----
         label2.setText("Mon solde");
+        label2.setFont(label2.getFont().deriveFont(label2.getFont().getStyle() | Font.BOLD));
         contentPane.add(label2, "cell 0 2 2 1");
         contentPane.add(label4, "cell 3 2 2 1");
 
         //---- label3 ----
         label3.setText("Montant du d\u00e9p\u00f4t");
+        label3.setFont(label3.getFont().deriveFont(label3.getFont().getStyle() | Font.BOLD));
         contentPane.add(label3, "cell 0 4 2 1");
         contentPane.add(textField1, "cell 3 4 2 1");
         contentPane.add(label_err, "cell 0 5 5 1");

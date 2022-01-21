@@ -8,12 +8,15 @@ public class Client {
     private int id = 1;
     private int nbrTransactions = 0;
     private int maxDepot;
+    private Bank banque;
 
-    public Client(String nom, String prenom, int montant, int maxDepot) {
+    public Client(String nom, String prenom, int montant, int maxDepot, Bank banque) {
         this.nom = nom;
         this.prenom = prenom;
         this.montant = montant;
         this.maxDepot = maxDepot;
+        this.banque = banque;
+        setId(this.id);
     }
 
     public String getNom() {
@@ -74,5 +77,13 @@ public class Client {
 
     public void setMaxDepot(int maxDepot) {
         this.maxDepot = maxDepot;
+    }
+
+    public Bank getBanque() {
+        return banque;
+    }
+
+    public void setBanque(Bank banque) {
+        this.banque = banque;
     }
 }

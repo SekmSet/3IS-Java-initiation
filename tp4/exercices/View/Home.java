@@ -4,6 +4,7 @@
 
 package exercices.View;
 
+import exercices.Model.Bank;
 import exercices.Model.Client;
 import exercices.Model.HistoriqueVirement;
 import net.miginfocom.swing.MigLayout;
@@ -22,10 +23,14 @@ public class Home extends JFrame {
     public static ArrayList<Client> listeClient = new ArrayList<>();
     public static ArrayList<HistoriqueVirement> listeHistoriqueVirement = new ArrayList<>();
     public static HistoriqueVirementView historiqueVirementView;
+    public static ArrayList<Bank> listeBanques = new ArrayList<>();
+
     public static Depot depot;
     public static Retrait retrait;
     public static Transfert transfert;
     public static CreateUser createUser;
+    public static BanqueInfo banqueInfo;
+
     private String colorGreen = "#1F6A20";
     private String colorOrange = "#EA5C2B";
     private String colorRed = "#CD1818";
@@ -76,7 +81,7 @@ public class Home extends JFrame {
     }
 
     private void creerClient(ActionEvent e) {
-        createUser = new CreateUser();
+        createUser = new CreateUser(listeBanques);
         createUser.setVisible(true);
     }
 
@@ -85,7 +90,7 @@ public class Home extends JFrame {
         Client user = getClient(nom);
 
         if (user != null) {
-            transfert = new Transfert(user, listeClient);
+            transfert = new Transfert(user, listeClient, listeBanques);
             transfert.setVisible(true);
 //            label6_status.setForeground(Color.decode(this.colorGreen));
 //            label6_status.setText("Virement effectué");
@@ -96,8 +101,6 @@ public class Home extends JFrame {
     }
 
     private void actionHistoriqueVirement(ActionEvent e) {
-        // TODO add your code here
-        // TODO add your code here
         String nom = textField1.getText();
         Client user = getClient(nom);
 
@@ -118,6 +121,17 @@ public class Home extends JFrame {
             }
         }
         return myHistorique;
+    }
+
+    private void actionVoirInfoBanque(ActionEvent e) {
+
+        String nom = textField1.getText();
+        Client user = getClient(nom);
+
+        if (user != null) {
+            banqueInfo = new BanqueInfo(user, listeBanques);
+            banqueInfo.setVisible(true);
+        }
     }
 
     private void initComponents() {
@@ -142,6 +156,7 @@ public class Home extends JFrame {
         button4 = new JButton();
         button5 = new JButton();
         button6 = new JButton();
+        button7 = new JButton();
 
         //======== this ========
         var contentPane = getContentPane();
@@ -168,10 +183,11 @@ public class Home extends JFrame {
             "[]" +
             "[]" +
             "[]" +
+            "[]" +
             "[]"));
 
         //---- label10 ----
-        label10.setText("Philippot Bank");
+        label10.setText("Page de profil");
         label10.setFont(label10.getFont().deriveFont(label10.getFont().getStyle() | Font.BOLD, label10.getFont().getSize() + 10f));
         contentPane.add(label10, "cell 0 0 9 1");
 
@@ -244,6 +260,14 @@ public class Home extends JFrame {
         button6.setText("Voir mon historique des virements");
         button6.addActionListener(e -> actionHistoriqueVirement(e));
         contentPane.add(button6, "cell 0 10 9 1");
+
+        //---- button7 ----
+        button7.setText("Voir les informations de ma banque");
+        button7.addActionListener(e -> actionVoirInfoBanque(e));
+        contentPane.add(button7, "cell 0 11 9 1");
+
+        createBank();
+
         pack();
         setLocationRelativeTo(getOwner());
         // JFormDesigner - End of component initialization  //GEN-END:initComponents
@@ -272,7 +296,7 @@ public class Home extends JFrame {
             label6_status.setText("Compte positif");
         } else if (solde == 0) {
             label6_status.setForeground(Color.decode(this.colorOrange));
-            label6_status.setText("Compte null");
+            label6_status.setText("Sans solde");
         } else {
             label6_status.setForeground(Color.decode(this.colorRed));
             label6_status.setText("Compte déficitaire");
@@ -287,6 +311,49 @@ public class Home extends JFrame {
         }
 
         return null;
+    }
+
+    private void createBank () {
+        Bank newBank1 = new Bank("" +
+                "C.I.C",
+                "Jordan Philippot",
+                "Monsieur Kawai",
+                "04 00 00 00 00",
+                "38 Rue des étoiles",
+                "Lyon",
+                "69002"
+        );
+        Bank newBank2 = new Bank("" +
+                "Philippot Bank",
+                "Jordan Philippot",
+                "Monsieur Philippot",
+                "04 00 00 00 00",
+                "69 Rue de la baise",
+                "Paris",
+                "75000"
+        );
+        Bank newBank3 = new Bank(
+                "Crédit Mutuel",
+                "Marie Philippot",
+                "Madame Sakura",
+                "04 00 00 00 00",
+                "17 Rue Shibie",
+                "Marseille",
+                "13000"
+        );
+        Bank newBank4 = new Bank(
+                "Société Générale",
+                "Lucie Heartfilia",
+                "Monsieur Holmes",
+                "04 00 00 00 00",
+                "33 Bis Rue du Maréchal",
+                "Toulouse",
+                "31000"
+        );
+        listeBanques.add(newBank1);
+        listeBanques.add(newBank2);
+        listeBanques.add(newBank3);
+        listeBanques.add(newBank4);
     }
 
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables
@@ -310,5 +377,6 @@ public class Home extends JFrame {
     private JButton button4;
     private JButton button5;
     private JButton button6;
+    private JButton button7;
     // JFormDesigner - End of variables declaration  //GEN-END:variables
 }
