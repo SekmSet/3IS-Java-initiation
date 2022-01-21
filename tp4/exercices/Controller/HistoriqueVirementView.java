@@ -4,13 +4,10 @@
 
 package exercices.Controller;
 
-import javax.swing.*;
-
-import exercices.Model.Client;
 import exercices.Model.HistoriqueVirement;
-import net.miginfocom.swing.*;
+import net.miginfocom.swing.MigLayout;
 
-import java.time.LocalDate;
+import javax.swing.*;
 import java.util.ArrayList;
 
 /**
@@ -19,21 +16,21 @@ import java.util.ArrayList;
 public class HistoriqueVirementView extends JFrame {
 
     private ArrayList<HistoriqueVirement> listeHistoriqueVirement;
-
-    public HistoriqueVirementView() {
-        initComponents();
-    }
+    // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables
+    private JLabel label1;
+    private JLabel myArray;
+    // JFormDesigner - End of variables declaration  //GEN-END:variables
 
     public HistoriqueVirementView(ArrayList<HistoriqueVirement> listeHistoriqueVirement) {
         this.listeHistoriqueVirement = listeHistoriqueVirement;
         initComponents();
     }
 
-    public String getToString(){
+    public String getToString() {
         String str = "";
 
-        for(int i = 0; i< this.listeHistoriqueVirement.size(); i++){
-            str += this.listeHistoriqueVirement.get(i).toString();
+        for (HistoriqueVirement historiqueVirement : this.listeHistoriqueVirement) {
+            str += historiqueVirement.toString();
         }
         return str;
     }
@@ -48,25 +45,25 @@ public class HistoriqueVirementView extends JFrame {
         //======== this ========
         var contentPane = getContentPane();
         contentPane.setLayout(new MigLayout(
-            "hidemode 3",
-            // columns
-            "[fill]" +
-            "[fill]" +
-            "[fill]" +
-            "[fill]" +
-            "[fill]" +
-            "[fill]" +
-            "[fill]" +
-            "[fill]" +
-            "[fill]" +
-            "[fill]",
-            // rows
-            "[]" +
-            "[]" +
-            "[]" +
-            "[]" +
-            "[]" +
-            "[]"));
+                "hidemode 3",
+                // columns
+                "[fill]" +
+                        "[fill]" +
+                        "[fill]" +
+                        "[fill]" +
+                        "[fill]" +
+                        "[fill]" +
+                        "[fill]" +
+                        "[fill]" +
+                        "[fill]" +
+                        "[fill]",
+                // rows
+                "[]" +
+                        "[]" +
+                        "[]" +
+                        "[]" +
+                        "[]" +
+                        "[]"));
 
         //---- label1 ----
         label1.setText("L'historique de vos virements :");
@@ -80,12 +77,4 @@ public class HistoriqueVirementView extends JFrame {
         setLocationRelativeTo(getOwner());
         // JFormDesigner - End of component initialization  //GEN-END:initComponents
     }
-
-    public static void main(Client user, ArrayList<HistoriqueVirement> listeHistoriqueVirement){
-
-    }
-    // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables
-    private JLabel label1;
-    private JLabel myArray;
-    // JFormDesigner - End of variables declaration  //GEN-END:variables
 }

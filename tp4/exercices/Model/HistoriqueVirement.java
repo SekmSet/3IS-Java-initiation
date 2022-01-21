@@ -1,7 +1,6 @@
 package exercices.Model;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
 
 public class HistoriqueVirement {
 
@@ -21,7 +20,7 @@ public class HistoriqueVirement {
     public String toString() {
         return "<br/> Béneficiaire:" + nomBeneficiaire + ", <br/>" +
                 "montant:" + montant + " €" + ", <br/>" +
-                "date du virement:" + dateVirement  + ", <br/>" +
+                "date du virement:" + dateVirement + ", <br/>" +
                 "Créancier:" + nomCreancier + "<br/>" +
                 "<br/> __________<br/>";
     }

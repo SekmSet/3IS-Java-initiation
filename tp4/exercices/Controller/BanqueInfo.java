@@ -4,13 +4,13 @@
 
 package exercices.Controller;
 
-import java.awt.*;
-import java.util.ArrayList;
-import javax.swing.*;
-
 import exercices.Model.Bank;
 import exercices.Model.Client;
-import net.miginfocom.swing.*;
+import net.miginfocom.swing.MigLayout;
+
+import javax.swing.*;
+import java.awt.*;
+import java.util.ArrayList;
 
 /**
  * @author Priscilla Joly
@@ -18,18 +18,38 @@ import net.miginfocom.swing.*;
 public class BanqueInfo extends JFrame {
     private Client user;
     private ArrayList<Bank> listeBanques;
+    // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables
+    private JLabel label1;
+    private JLabel label2;
+    private JLabel label9;
+    private JLabel label3;
+    private JLabel label10;
+    private JLabel label4;
+    private JLabel label11;
+    private JLabel label5;
+    private JLabel label12;
+    private JLabel label6;
+    private JLabel label13;
+    private JLabel label7;
+    private JLabel label14;
+    private JLabel label8;
+    private JLabel label15;
+    private JLabel label16;
+    private JLabel label17;
+    private JLabel label18;
+    // JFormDesigner - End of variables declaration  //GEN-END:variables
 
-    public static void main(String[] args) {
-        new BanqueInfo();
-    }
     public BanqueInfo() {
         initComponents();
     }
-
     public BanqueInfo(Client user, ArrayList<Bank> listeBanques) {
         this.user = user;
         this.listeBanques = listeBanques;
         initComponents();
+    }
+
+    public static void main(String[] args) {
+        new BanqueInfo();
     }
 
     private void initComponents() {
@@ -56,33 +76,33 @@ public class BanqueInfo extends JFrame {
         //======== this ========
         var contentPane = getContentPane();
         contentPane.setLayout(new MigLayout(
-            "hidemode 3",
-            // columns
-            "[171,fill]" +
-            "[336,fill]",
-            // rows
-            "[]" +
-            "[]" +
-            "[]" +
-            "[]" +
-            "[]" +
-            "[]" +
-            "[]" +
-            "[]" +
-            "[]" +
-            "[]" +
-            "[]" +
-            "[]" +
-            "[]" +
-            "[]" +
-            "[]" +
-            "[]" +
-            "[]" +
-            "[]"));
+                "hidemode 3",
+                // columns
+                "[171,fill]" +
+                        "[336,fill]",
+                // rows
+                "[]" +
+                        "[]" +
+                        "[]" +
+                        "[]" +
+                        "[]" +
+                        "[]" +
+                        "[]" +
+                        "[]" +
+                        "[]" +
+                        "[]" +
+                        "[]" +
+                        "[]" +
+                        "[]" +
+                        "[]" +
+                        "[]" +
+                        "[]" +
+                        "[]" +
+                        "[]"));
 
         Bank isExistBank = getBankById(user.getBanque().getId());
 
-        if(isExistBank == null) {
+        if (isExistBank == null) {
             return;
         }
 
@@ -171,30 +191,9 @@ public class BanqueInfo extends JFrame {
         // JFormDesigner - End of component initialization  //GEN-END:initComponents
     }
 
-    // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables
-    private JLabel label1;
-    private JLabel label2;
-    private JLabel label9;
-    private JLabel label3;
-    private JLabel label10;
-    private JLabel label4;
-    private JLabel label11;
-    private JLabel label5;
-    private JLabel label12;
-    private JLabel label6;
-    private JLabel label13;
-    private JLabel label7;
-    private JLabel label14;
-    private JLabel label8;
-    private JLabel label15;
-    private JLabel label16;
-    private JLabel label17;
-    private JLabel label18;
-    // JFormDesigner - End of variables declaration  //GEN-END:variables
-
     private Bank getBankById(int id) {
         for (Bank banque : this.listeBanques) {
-            if(banque.getId() == id){
+            if (banque.getId() == id) {
                 return banque;
             }
         }

@@ -17,35 +17,33 @@ import java.util.ArrayList;
  */
 public class Retrait extends JFrame {
 
+    private final String colorGreen = "#1F6A20";
+    private final String colorRed = "#CD1818";
+    private final String colorOrange = "#EA5C2B";
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables
     private JLabel label1;
     private JLabel label2;
     private JLabel label4;
     private JLabel label3;
+    // JFormDesigner - End of variables declaration  //GEN-END:variables
     private JTextField textField1;
     private JLabel label_err;
     private JButton button1;
-    // JFormDesigner - End of variables declaration  //GEN-END:variables
-
     private Client nom;
     private ArrayList<Client> liste;
     private int solde;
-
-    private String colorGreen = "#1F6A20";
-    private String colorRed = "#CD1818";
-    private String colorOrange = "#EA5C2B";
 
     public Retrait() {
         initComponents();
     }
 
 
- public Retrait(Client nom, ArrayList<Client> liste) {
-     this.nom = nom;
-     this.liste = liste;
-     this.solde = nom.getSolde();
+    public Retrait(Client nom, ArrayList<Client> liste) {
+        this.nom = nom;
+        this.liste = liste;
+        this.solde = nom.getSolde();
 
-     initComponents();
+        initComponents();
     }
 
     public static void main(String[] args) {
@@ -65,20 +63,20 @@ public class Retrait extends JFrame {
         //======== this ========
         var contentPane = getContentPane();
         contentPane.setLayout(new MigLayout(
-            "hidemode 3",
-            // columns
-            "[fill]" +
-            "[fill]" +
-            "[fill]" +
-            "[78,fill]",
-            // rows
-            "[]" +
-            "[]" +
-            "[]" +
-            "[]" +
-            "[]" +
-            "[]" +
-            "[]"));
+                "hidemode 3",
+                // columns
+                "[fill]" +
+                        "[fill]" +
+                        "[fill]" +
+                        "[78,fill]",
+                // rows
+                "[]" +
+                        "[]" +
+                        "[]" +
+                        "[]" +
+                        "[]" +
+                        "[]" +
+                        "[]"));
 
         //---- label1 ----
         label1.setText("Retrait");
@@ -104,7 +102,7 @@ public class Retrait extends JFrame {
         contentPane.add(button1, "cell 0 6 4 1");
 
         label4.setText(String.valueOf(this.solde));
-        if(this.solde < 0) {
+        if (this.solde < 0) {
             label4.setForeground(Color.decode(this.colorRed));
         } else if (this.solde > 0) {
             label4.setForeground(Color.decode(this.colorGreen));
@@ -146,7 +144,7 @@ public class Retrait extends JFrame {
 
         int convertStringToInt = Integer.parseInt(montant);
 
-        if(-nom.getMontant() <= (this.solde - convertStringToInt)) {
+        if (-nom.getMontant() <= (this.solde - convertStringToInt)) {
             this.nom.setSolde(convertStringToInt, "retrait");
             nom.setNbrTransactions(nom.getNbrTransactions());
             Home.retrait.setVisible(false);

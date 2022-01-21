@@ -4,13 +4,12 @@
 
 package exercices.Controller;
 
-import java.awt.*;
-
 import exercices.Model.Bank;
 import exercices.Model.Client;
 import net.miginfocom.swing.MigLayout;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.util.ArrayList;
 
@@ -18,6 +17,8 @@ import java.util.ArrayList;
  * @author Priscilla Joly
  */
 public class CreateUser extends JFrame {
+    private final String colorGreen = "#1F6A20";
+    private final String colorRed = "#CD1818";
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables
     private JLabel label1;
     private JLabel label7;
@@ -32,17 +33,10 @@ public class CreateUser extends JFrame {
     private JLabel label6;
     private JTextField textField5;
     private JLabel label8;
+    // JFormDesigner - End of variables declaration  //GEN-END:variables
     private JLabel label_error;
     private JButton button1;
-    // JFormDesigner - End of variables declaration  //GEN-END:variables
-
     private ArrayList<Bank> listeBanques;
-    private String colorGreen = "#1F6A20";
-    private String colorRed = "#CD1818";
-
-    public static void main(String[] args) {
-        new CreateUser();
-    }
 
     public CreateUser() {
         initComponents();
@@ -51,6 +45,10 @@ public class CreateUser extends JFrame {
     public CreateUser(ArrayList<Bank> listeBanques) {
         this.listeBanques = listeBanques;
         initComponents();
+    }
+
+    public static void main(String[] args) {
+        new CreateUser();
     }
 
     private void initComponents() {
@@ -74,31 +72,31 @@ public class CreateUser extends JFrame {
         //======== this ========
         var contentPane = getContentPane();
         contentPane.setLayout(new MigLayout(
-            "hidemode 3",
-            // columns
-            "[fill]" +
-            "[fill]" +
-            "[fill]" +
-            "[69,fill]" +
-            "[178,fill]" +
-            "[fill]",
-            // rows
-            "[]" +
-            "[]" +
-            "[]" +
-            "[]" +
-            "[]" +
-            "[]" +
-            "[]" +
-            "[]" +
-            "[]" +
-            "[]" +
-            "[]" +
-            "[]" +
-            "[]" +
-            "[]" +
-            "[]" +
-            "[]"));
+                "hidemode 3",
+                // columns
+                "[fill]" +
+                        "[fill]" +
+                        "[fill]" +
+                        "[69,fill]" +
+                        "[178,fill]" +
+                        "[fill]",
+                // rows
+                "[]" +
+                        "[]" +
+                        "[]" +
+                        "[]" +
+                        "[]" +
+                        "[]" +
+                        "[]" +
+                        "[]" +
+                        "[]" +
+                        "[]" +
+                        "[]" +
+                        "[]" +
+                        "[]" +
+                        "[]" +
+                        "[]" +
+                        "[]"));
 
         //---- label1 ----
         label1.setFont(label1.getFont().deriveFont(Font.BOLD, label1.getFont().getSize() + 10f));
@@ -141,7 +139,7 @@ public class CreateUser extends JFrame {
 
         //---- label8 ----
         label8.setText("* Choix de la banque : C.I.C, Philippot Bank, Cr\u00e9dit Mutuel, Soci\u00e9t\u00e9 G\u00e9n\u00e9rale");
-        label8.setFont(label8.getFont().deriveFont(Font.BOLD|Font.ITALIC));
+        label8.setFont(label8.getFont().deriveFont(Font.BOLD | Font.ITALIC));
         contentPane.add(label8, "cell 0 11 6 1");
         contentPane.add(label_error, "cell 3 13 3 1");
 
@@ -162,7 +160,7 @@ public class CreateUser extends JFrame {
         String depotMax = textField4.getText();
         String nomBanque = textField5.getText();
 
-        if (nom.equals(" ") && prenom.equals(" ") && montant.equals(" ") && nomBanque.equals(" ")) {
+        if (nom.equals(" ") && prenom.equals(" ") && montant.equals(" ") && nomBanque.equals(" ") && depotMax.equals(" ")) {
             label_error.setForeground(Color.decode(this.colorRed));
             label_error.setText("Impossible de créer un nouveau client !");
             return;
@@ -184,6 +182,11 @@ public class CreateUser extends JFrame {
 
             Home.listeClient.add(client);
 
+            textField1.setText("");
+            textField2.setText("");
+            textField3.setText("");
+            textField4.setText("");
+            textField5.setText("");
             label_error.setForeground(Color.decode(this.colorGreen));
             label_error.setText("Création d'un nouveau client effectué");
         }
@@ -191,7 +194,7 @@ public class CreateUser extends JFrame {
 
     private Bank getBankByNom(String nom) {
         for (Bank banque : this.listeBanques) {
-            if(banque.getNom().equals(nom)){
+            if (banque.getNom().equals(nom)) {
                 return banque;
             }
         }

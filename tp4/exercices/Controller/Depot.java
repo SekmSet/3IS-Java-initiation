@@ -16,23 +16,21 @@ import java.util.ArrayList;
  * @author Priscilla Joly
  */
 public class Depot extends JFrame {
+    private final String colorGreen = "#1F6A20";
+    private final String colorRed = "#CD1818";
+    private final String colorOrange = "#EA5C2B";
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables
     private JLabel label1;
     private JLabel label2;
     private JLabel label4;
     private JLabel label3;
+    // JFormDesigner - End of variables declaration  //GEN-END:variables
     private JTextField textField1;
     private JLabel label_err;
     private JButton button1;
-    // JFormDesigner - End of variables declaration  //GEN-END:variables
-
     private Client nom;
     private ArrayList<Client> liste;
     private int solde;
-
-    private String colorGreen = "#1F6A20";
-    private String colorRed = "#CD1818";
-    private String colorOrange = "#EA5C2B";
 
     public Depot() {
         initComponents();
@@ -43,6 +41,10 @@ public class Depot extends JFrame {
         this.liste = liste;
         this.solde = nom.getSolde();
         initComponents();
+    }
+
+    public static void main(String[] args) {
+        new Depot();
     }
 
     private void initComponents() {
@@ -58,21 +60,21 @@ public class Depot extends JFrame {
         //======== this ========
         var contentPane = getContentPane();
         contentPane.setLayout(new MigLayout(
-            "hidemode 3",
-            // columns
-            "[fill]" +
-            "[fill]" +
-            "[fill]" +
-            "[fill]" +
-            "[76,fill]",
-            // rows
-            "[]" +
-            "[]" +
-            "[]" +
-            "[]" +
-            "[]" +
-            "[]" +
-            "[]"));
+                "hidemode 3",
+                // columns
+                "[fill]" +
+                        "[fill]" +
+                        "[fill]" +
+                        "[fill]" +
+                        "[76,fill]",
+                // rows
+                "[]" +
+                        "[]" +
+                        "[]" +
+                        "[]" +
+                        "[]" +
+                        "[]" +
+                        "[]"));
 
         //---- label1 ----
         label1.setText("D\u00e9p\u00f4t");
@@ -98,7 +100,7 @@ public class Depot extends JFrame {
         contentPane.add(button1, "cell 0 6 5 1");
 
         label4.setText(String.valueOf(this.solde));
-        if(this.solde < 0) {
+        if (this.solde < 0) {
             label4.setForeground(Color.decode(this.colorRed));
         } else if (this.solde > 0) {
             label4.setForeground(Color.decode(this.colorGreen));
@@ -109,10 +111,6 @@ public class Depot extends JFrame {
         pack();
         setLocationRelativeTo(getOwner());
         // JFormDesigner - End of component initialization  //GEN-END:initComponents
-    }
-
-    public static void main(String[] args) {
-        new Depot();
     }
 
     public Client getNom() {
@@ -143,7 +141,7 @@ public class Depot extends JFrame {
         String montant = textField1.getText();
         int convertStringToInt = Integer.parseInt(montant);
 
-        if(nom.getMaxDepot() >= convertStringToInt) {
+        if (nom.getMaxDepot() >= convertStringToInt) {
             this.nom.setSolde(convertStringToInt, "depot");
             nom.setNbrTransactions(nom.getNbrTransactions());
             Home.depot.setVisible(false);

@@ -4,21 +4,22 @@
 
 package exercices.Controller;
 
-import java.awt.*;
-import java.awt.event.*;
-import java.util.ArrayList;
-import javax.swing.*;
-import java.time.*;
-
-import exercices.Model.Bank;
 import exercices.Model.Client;
 import exercices.Model.HistoriqueVirement;
-import net.miginfocom.swing.*;
+import net.miginfocom.swing.MigLayout;
+
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.time.LocalDate;
+import java.util.ArrayList;
 
 /**
  * @author Priscilla Joly
  */
 public class Transfert extends JFrame {
+    private final LocalDate dateNow = LocalDate.now();
+    private final String colorRed = "#CD1818";
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables
     private JLabel label1;
     private JLabel label2;
@@ -30,24 +31,14 @@ public class Transfert extends JFrame {
     private JLabel label_err;
     private JButton button1;
     // JFormDesigner - End of variables declaration  //GEN-END:variables
-    private Client nom;
+    private Client client;
     private ArrayList<Client> liste;
-    private ArrayList<Bank> listeBanque;
-    private int solde;
-    private LocalDate dateNow = LocalDate.now();
-    private String colorGreen = "#1F6A20";
-    private String colorRed = "#CD1818";
-    private String colorOrange = "#EA5C2B";
 
-    public Transfert() {
-        initComponents();
-    }
 
-    public Transfert(Client nom, ArrayList<Client> liste, ArrayList<Bank> listeBanque) {
-        initComponents();
-        this.nom = nom;
+    public Transfert(Client client, ArrayList<Client> liste) {
+        this.client = client;
         this.liste = liste;
-        this.listeBanque = listeBanque;
+        initComponents();
     }
 
     private void initComponents() {
@@ -65,27 +56,27 @@ public class Transfert extends JFrame {
         //======== this ========
         var contentPane = getContentPane();
         contentPane.setLayout(new MigLayout(
-            "hidemode 3",
-            // columns
-            "[fill]" +
-            "[fill]" +
-            "[fill]" +
-            "[150,fill]",
-            // rows
-            "[]" +
-            "[]" +
-            "[]" +
-            "[]" +
-            "[]" +
-            "[]" +
-            "[]" +
-            "[]" +
-            "[]" +
-            "[]"));
+                "hidemode 3",
+                // columns
+                "[fill]" +
+                        "[fill]" +
+                        "[fill]" +
+                        "[150,fill]",
+                // rows
+                "[]" +
+                        "[]" +
+                        "[]" +
+                        "[]" +
+                        "[]" +
+                        "[]" +
+                        "[]" +
+                        "[]" +
+                        "[]" +
+                        "[]"));
 
         //---- label1 ----
-        if(this.nom !=  null) {
-            label1.setText(this.nom.getBanque().getNom());
+        if (this.client != null) {
+            label1.setText(this.client.getBanque().getNom());
         }
 
         label1.setFont(label1.getFont().deriveFont(label1.getFont().getStyle() | Font.BOLD, label1.getFont().getSize() + 10f));
@@ -127,15 +118,15 @@ public class Transfert extends JFrame {
         Client isExistBenef = getClient(nomBeneficiaire);
         Client isExistCreancier = getClient(nomCreancier);
 
-        if(isExistBenef == null || isExistCreancier == null) {
+        if (isExistBenef == null || isExistCreancier == null) {
             label_err.setForeground(Color.decode(this.colorRed));
             label_err.setText("Déstinataire invalid");
             return;
         }
 
-        if (-nom.getMontant() <= (solde - convertStringToInt)) {
+        if (-client.getMontant() <= (this.client.getSolde() - convertStringToInt)) {
 //            nom.setSolde(convertStringToInt, "retrait");
-            nom.setSolde(convertStringToInt, "transfer");
+            client.setSolde(convertStringToInt, "transfer");
             isExistBenef.setSolde(convertStringToInt, "depot");
             Home.transfert.setVisible(false);
 
@@ -150,7 +141,7 @@ public class Transfert extends JFrame {
 
     private Client getClient(String nom) {
         for (Client client : this.liste) {
-            if(client.getNom().equals(nom)){
+            if (client.getNom().equals(nom)) {
                 return client;
             }
         }

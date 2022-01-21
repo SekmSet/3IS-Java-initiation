@@ -1,7 +1,7 @@
 package exercices.Model;
 
 public class Bank {
-    private int id = 0;
+    private int id;
     private String nom;
     private String directeur;
     private String conseiller;
@@ -12,13 +12,15 @@ public class Bank {
     private int nbrClient = 0;
 
     public Bank(
+            int id,
             String nom,
             String directeur,
             String conseiller,
             String numero,
             String adresse,
             String ville,
-            String codePostal) {
+            String codePostal
+    ) {
 
         this.nom = nom;
         this.directeur = directeur;
@@ -27,6 +29,7 @@ public class Bank {
         this.adresse = adresse;
         this.ville = ville;
         this.codePostal = codePostal;
+        this.id = id;
 
         setId(this.id);
         setNbrClient(this.id);
@@ -37,7 +40,7 @@ public class Bank {
     }
 
     public void setId(int id) {
-        this.id = id + 1;
+        this.id = id;
     }
 
     public String getNom() {

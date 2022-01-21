@@ -30,19 +30,53 @@ public class Home extends JFrame {
     public static CreateUser createUser;
     public static BanqueInfo banqueInfo;
 
-    private String colorGreen = "#1F6A20";
-    private String colorOrange = "#EA5C2B";
-    private String colorRed = "#CD1818";
+    private final String colorGreen = "#1F6A20";
+    private final String colorOrange = "#EA5C2B";
+    private final String colorRed = "#CD1818";
+    // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables
+    private JLabel label10;
+    private JLabel label3;
+    private JTextField textField1;
+    private JButton button3;
+    private JLabel label4;
+    private JLabel label5;
+    private JLabel label6;
+    private JLabel label8;
+    private JLabel label1;
+    private JLabel label2;
+    private JLabel label7;
+    private JLabel label9;
+    private JLabel label11;
+    private JLabel label12;
+    private JButton button2;
+    private JButton button1;
+    private JLabel label6_status;
+    private JButton button4;
+    private JButton button5;
+    private JButton button6;
+    private JButton button7;
+    // JFormDesigner - End of variables declaration  //GEN-END:variables
 
     public Home() {
         initComponents();
+    }
+
+    public static void main(String[] args) {
+        EventQueue.invokeLater(() -> {
+            try {
+                Home frame = new Home();
+                frame.setVisible(true);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
     }
 
     private void actionDepot(ActionEvent e) {
         String nom = textField1.getText();
         Client user = getClient(nom);
 
-        if(user != null) {
+        if (user != null) {
             depot = new Depot(user, listeClient);
             depot.setVisible(true);
         } else {
@@ -55,28 +89,13 @@ public class Home extends JFrame {
         String nom = textField1.getText();
         Client user = getClient(nom);
 
-        if(user != null) {
+        if (user != null) {
             retrait = new Retrait(user, listeClient);
             retrait.setVisible(true);
-//            label6_status.setForeground(Color.decode(this.colorGreen));
-//            label6_status.setText("Retrait effectué");
         } else {
             label6_status.setForeground(Color.decode(this.colorRed));
             label6_status.setText("Pas d'utilisateur trouvé.");
         }
-    }
-
-    public static void main(String[] args) {
-        EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                try {
-                    Home frame = new Home();
-                    frame.setVisible(true);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        });
     }
 
     private void creerClient(ActionEvent e) {
@@ -89,10 +108,8 @@ public class Home extends JFrame {
         Client user = getClient(nom);
 
         if (user != null) {
-            transfert = new Transfert(user, listeClient, listeBanques);
+            transfert = new Transfert(user, listeClient);
             transfert.setVisible(true);
-//            label6_status.setForeground(Color.decode(this.colorGreen));
-//            label6_status.setText("Virement effectué");
         } else {
             label6_status.setForeground(Color.decode(this.colorRed));
             label6_status.setText("Pas d'utilisateur trouvé.");
@@ -104,7 +121,7 @@ public class Home extends JFrame {
         Client user = getClient(nom);
 
         if (user != null) {
-            ArrayList<HistoriqueVirement> listeHistoriquVirementView =  getClientHistoriqueVirement(user);
+            ArrayList<HistoriqueVirement> listeHistoriquVirementView = getClientHistoriqueVirement(user);
 
             historiqueVirementView = new HistoriqueVirementView(listeHistoriquVirementView);
             historiqueVirementView.setVisible(true);
@@ -112,11 +129,11 @@ public class Home extends JFrame {
         }
     }
 
-    private ArrayList<HistoriqueVirement> getClientHistoriqueVirement(Client client){
+    private ArrayList<HistoriqueVirement> getClientHistoriqueVirement(Client client) {
         ArrayList<HistoriqueVirement> myHistorique = new ArrayList<>();
-        for (int i = 0; i < listeHistoriqueVirement.size(); i++){
-            if(listeHistoriqueVirement.get(i).getNomCreancier().equals(client.getNom())){
-                myHistorique.add(listeHistoriqueVirement.get(i));
+        for (HistoriqueVirement historiqueVirement : listeHistoriqueVirement) {
+            if (historiqueVirement.getNomCreancier().equals(client.getNom())) {
+                myHistorique.add(historiqueVirement);
             }
         }
         return myHistorique;
@@ -160,30 +177,30 @@ public class Home extends JFrame {
         //======== this ========
         var contentPane = getContentPane();
         contentPane.setLayout(new MigLayout(
-            "hidemode 3",
-            // columns
-            "[102,fill]" +
-            "[fill]" +
-            "[125,fill]" +
-            "[fill]" +
-            "[70,fill]" +
-            "[fill]" +
-            "[81,fill]" +
-            "[fill]" +
-            "[fill]",
-            // rows
-            "[]" +
-            "[]" +
-            "[]" +
-            "[]" +
-            "[]" +
-            "[]" +
-            "[]" +
-            "[]" +
-            "[]" +
-            "[]" +
-            "[]" +
-            "[]"));
+                "hidemode 3",
+                // columns
+                "[102,fill]" +
+                        "[fill]" +
+                        "[125,fill]" +
+                        "[fill]" +
+                        "[70,fill]" +
+                        "[fill]" +
+                        "[81,fill]" +
+                        "[fill]" +
+                        "[fill]",
+                // rows
+                "[]" +
+                        "[]" +
+                        "[]" +
+                        "[]" +
+                        "[]" +
+                        "[]" +
+                        "[]" +
+                        "[]" +
+                        "[]" +
+                        "[]" +
+                        "[]" +
+                        "[]"));
 
         //---- label10 ----
         label10.setText("Page de profil");
@@ -290,7 +307,7 @@ public class Home extends JFrame {
         label9.setText(String.valueOf(user.getNbrTransactions()));
         label12.setText(String.valueOf(user.getMaxDepot()));
 
-        if(solde > 0) {
+        if (solde > 0) {
             label6_status.setForeground(Color.decode(this.colorGreen));
             label6_status.setText("Compte positif");
         } else if (solde == 0) {
@@ -304,7 +321,7 @@ public class Home extends JFrame {
 
     private Client getClient(String nom) {
         for (Client client : listeClient) {
-            if(client.getNom().equals(nom)){
+            if (client.getNom().equals(nom)) {
                 return client;
             }
         }
@@ -312,8 +329,9 @@ public class Home extends JFrame {
         return null;
     }
 
-    private void createBank () {
-        Bank newBank1 = new Bank("" +
+    private void createBank() {
+        Bank newBank1 = new Bank(
+                1,
                 "C.I.C",
                 "Jordan Philippot",
                 "Monsieur Kawai",
@@ -322,7 +340,8 @@ public class Home extends JFrame {
                 "Lyon",
                 "69002"
         );
-        Bank newBank2 = new Bank("" +
+        Bank newBank2 = new Bank(
+                2,
                 "Philippot Bank",
                 "Jordan Philippot",
                 "Monsieur Philippot",
@@ -332,6 +351,7 @@ public class Home extends JFrame {
                 "75000"
         );
         Bank newBank3 = new Bank(
+                3,
                 "Crédit Mutuel",
                 "Marie Philippot",
                 "Madame Sakura",
@@ -341,6 +361,7 @@ public class Home extends JFrame {
                 "13000"
         );
         Bank newBank4 = new Bank(
+                4,
                 "Société Générale",
                 "Lucie Heartfilia",
                 "Monsieur Holmes",
@@ -354,28 +375,4 @@ public class Home extends JFrame {
         listeBanques.add(newBank3);
         listeBanques.add(newBank4);
     }
-
-    // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables
-    private JLabel label10;
-    private JLabel label3;
-    private JTextField textField1;
-    private JButton button3;
-    private JLabel label4;
-    private JLabel label5;
-    private JLabel label6;
-    private JLabel label8;
-    private JLabel label1;
-    private JLabel label2;
-    private JLabel label7;
-    private JLabel label9;
-    private JLabel label11;
-    private JLabel label12;
-    private JButton button2;
-    private JButton button1;
-    private JLabel label6_status;
-    private JButton button4;
-    private JButton button5;
-    private JButton button6;
-    private JButton button7;
-    // JFormDesigner - End of variables declaration  //GEN-END:variables
 }
