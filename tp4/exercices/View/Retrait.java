@@ -8,6 +8,7 @@ import exercices.Model.Client;
 import net.miginfocom.swing.MigLayout;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.util.ArrayList;
 
@@ -25,9 +26,15 @@ public class Retrait extends JFrame {
     private JLabel label_err;
     private JButton button1;
     // JFormDesigner - End of variables declaration  //GEN-END:variables
+
     private Client nom;
     private ArrayList<Client> liste;
     private int solde;
+
+    private String colorGreen = "#1F6A20";
+    private String colorRed = "#CD1818";
+    private String colorOrange = "#EA5C2B";
+
     public Retrait() {
         initComponents();
     }
@@ -37,6 +44,7 @@ public class Retrait extends JFrame {
      this.nom = nom;
      this.liste = liste;
      this.solde = nom.getSolde();
+
      initComponents();
     }
 
@@ -91,6 +99,16 @@ public class Retrait extends JFrame {
         button1.setText("Valider");
         button1.addActionListener(e -> valideRetrait(e));
         contentPane.add(button1, "cell 0 6 4 1");
+
+        label4.setText(String.valueOf(this.solde));
+        if(this.solde < 0) {
+            label4.setForeground(Color.decode(this.colorRed));
+        } else if (this.solde > 0) {
+            label4.setForeground(Color.decode(this.colorGreen));
+        } else {
+            label4.setForeground(Color.decode(this.colorOrange));
+        }
+
         pack();
         setLocationRelativeTo(getOwner());
 //        setVisible(true);
@@ -130,9 +148,9 @@ public class Retrait extends JFrame {
         if(-nom.getMontant() <= (this.solde - convertStringToInt)) {
             this.nom.setSolde(convertStringToInt, "retrait");
             nom.setNbrTransactions(nom.getNbrTransactions());
-            label_err.setText("Retrait effectué");
             Home.retrait.setVisible(false);
         } else {
+            label_err.setForeground(Color.decode(this.colorRed));
             label_err.setText("Retrait impossible");
         }
     }

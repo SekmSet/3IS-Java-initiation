@@ -8,6 +8,7 @@ import exercices.Model.Client;
 import net.miginfocom.swing.MigLayout;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.util.ArrayList;
 
@@ -28,6 +29,10 @@ public class Depot extends JFrame {
     private Client nom;
     private ArrayList<Client> liste;
     private int solde;
+
+    private String colorGreen = "#1F6A20";
+    private String colorRed = "#CD1818";
+    private String colorOrange = "#EA5C2B";
 
     public Depot() {
         initComponents();
@@ -88,6 +93,16 @@ public class Depot extends JFrame {
         button1.setText("Valider");
         button1.addActionListener(e -> valideDepot(e));
         contentPane.add(button1, "cell 0 6 5 1");
+
+        label4.setText(String.valueOf(this.solde));
+        if(this.solde < 0) {
+            label4.setForeground(Color.decode(this.colorRed));
+        } else if (this.solde > 0) {
+            label4.setForeground(Color.decode(this.colorGreen));
+        } else {
+            label4.setForeground(Color.decode(this.colorOrange));
+        }
+
         pack();
         setLocationRelativeTo(getOwner());
         // JFormDesigner - End of component initialization  //GEN-END:initComponents
@@ -128,9 +143,9 @@ public class Depot extends JFrame {
         if(nom.getMaxDepot() >= convertStringToInt) {
             this.nom.setSolde(convertStringToInt, "depot");
             nom.setNbrTransactions(nom.getNbrTransactions());
-            label_err.setText("Dépôt effectué");
             Home.depot.setVisible(false);
         } else {
+            label_err.setForeground(Color.decode(this.colorRed));
             label_err.setText("Le dépôt ne peux pas être effectué");
         }
 

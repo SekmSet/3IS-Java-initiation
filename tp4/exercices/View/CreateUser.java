@@ -28,8 +28,9 @@ public class CreateUser extends JFrame {
     private JLabel label_error;
     private JButton button1;
     // JFormDesigner - End of variables declaration  //GEN-END:variables
-//    public static ArrayList<Client> listeClient = new ArrayList<>();
 
+    private String colorGreen = "#1F6A20";
+    private String colorRed = "#CD1818";
 
     public static void main(String[] args) {
         new CreateUser();
@@ -52,6 +53,7 @@ public class CreateUser extends JFrame {
         textField4 = new JTextField();
         label_error = new JLabel();
         button1 = new JButton();
+
 
         //======== this ========
         var contentPane = getContentPane();
@@ -127,27 +129,13 @@ public class CreateUser extends JFrame {
         String depotMax = textField4.getText();
 
         if (nom.equals(" ") && prenom.equals(" ") && montant.equals(" ")) {
+            label_error.setForeground(Color.decode(this.colorRed));
             label_error.setText("Impossible de créer un nouveau client !");
         } else {
             Client client = new Client(nom, prenom, Integer.parseInt(montant), Integer.parseInt(depotMax));
-            label_error.setText("Nouveau client créé !");
             Home.listeClient.add(client);
-
-            textField1.setText("");
-            textField2.setText("");
-            textField3.setText("");
-            textField4.setText("");
-            Home.createUser.setVisible(false);
+            label_error.setForeground(Color.decode(this.colorGreen));
+            label_error.setText("Création d'un nouveau client effectué");
         }
-    }
-
-    public Client getClient(String nom) {
-        for (Client client : Home.listeClient) {
-            if(client.getNom().equals(nom)){
-                return client;
-            }
-        }
-
-        return null;
     }
 }

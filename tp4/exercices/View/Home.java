@@ -23,6 +23,9 @@ public class Home extends JFrame {
     public static Retrait retrait;
     public static Transfert transfert;
     public static CreateUser createUser;
+    private String colorGreen = "#1F6A20";
+    private String colorOrange = "#EA5C2B";
+    private String colorRed = "#CD1818";
 
     public Home() {
         initComponents();
@@ -47,6 +50,8 @@ public class Home extends JFrame {
         if(user != null) {
             retrait = new Retrait(user, listeClient);
             retrait.setVisible(true);
+//            label6_status.setForeground(Color.decode(this.colorGreen));
+//            label6_status.setText("Retrait effectué");
         }
     }
 
@@ -78,6 +83,8 @@ public class Home extends JFrame {
             // todo add message d'erreur
             transfert = new Transfert(user, listeClient);
             transfert.setVisible(true);
+//            label6_status.setForeground(Color.decode(this.colorGreen));
+//            label6_status.setText("Virement effectué");
         }
     }
 
@@ -222,10 +229,13 @@ public class Home extends JFrame {
         label12.setText(String.valueOf(user.getMaxDepot()));
 
         if(solde > 0) {
+            label6_status.setForeground(Color.decode(this.colorGreen));
             label6_status.setText("Compte positif");
         } else if (solde == 0) {
+            label6_status.setForeground(Color.decode(this.colorOrange));
             label6_status.setText("Compte null");
         } else {
+            label6_status.setForeground(Color.decode(this.colorRed));
             label6_status.setText("Compte déficitaire");
         }
     }

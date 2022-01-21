@@ -11,7 +11,7 @@ new FormModel {
 			name: "this"
 			add( new FormComponent( "javax.swing.JLabel" ) {
 				name: "label1"
-				"text": "Philppot Bank"
+				"text": "Philippot Bank"
 				"font": new com.jformdesigner.model.SwingDerivedFont( null, 131073, 10, false )
 			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
 				"value": "cell 0 0 6 1"
@@ -78,7 +78,7 @@ new FormModel {
 			} )
 		}, new FormLayoutConstraints( null ) {
 			"location": new java.awt.Point( 15, 60 )
-			"size": new java.awt.Dimension( 635, 300 )
+			"size": new java.awt.Dimension( 635, 320 )
 		} )
 	}
 }

@@ -31,6 +31,10 @@ public class Transfert extends JFrame {
     private ArrayList<Client> liste;
     private int solde;
 
+    private String colorGreen = "#1F6A20";
+    private String colorRed = "#CD1818";
+    private String colorOrange = "#EA5C2B";
+
     public Transfert() {
         initComponents();
     }
@@ -102,6 +106,7 @@ public class Transfert extends JFrame {
         button1.setText("Envoyer");
         button1.addActionListener(e -> valideTransfert(e));
         contentPane.add(button1, "cell 1 9 3 1");
+
         pack();
         setLocationRelativeTo(getOwner());
         // JFormDesigner - End of component initialization  //GEN-END:initComponents
@@ -141,6 +146,7 @@ public class Transfert extends JFrame {
         Client isExistCreancier = getClient(nomCreancier);
 
         if(isExistBenef == null || isExistCreancier == null) {
+            label_err.setForeground(Color.decode(this.colorRed));
             label_err.setText("Déstinataire invalid");
             return;
         }
@@ -148,15 +154,11 @@ public class Transfert extends JFrame {
         if (-nom.getMontant() <= (solde - convertStringToInt)) { // todo check
             nom.setSolde(convertStringToInt, "retrait");
             isExistBenef.setSolde(convertStringToInt, "depot");
-            label_err.setText("Votre virement a bien été effectué");
-            textField2.setText("");
-            textField3.setText("");
             Home.transfert.setVisible(false);
         } else {
-            label_err.setText("Vous ne pouvez un versement de " + convertStringToInt + "euros.");
+            label_err.setForeground(Color.decode(this.colorRed));
+            label_err.setText("Vous ne pouvez effectuer un versement de " + convertStringToInt + " euros.");
         }
-
-
     }
 
     private Client getClient(String nom) {
