@@ -122,7 +122,6 @@ public class CreateUser extends JFrame {
     }
 
     private void createClient(ActionEvent e) {
-        // TODO add your code here
         String nom = textField1.getText();
         String prenom = textField2.getText();
         String montant = textField3.getText();

@@ -35,18 +35,19 @@ public class Home extends JFrame {
     }
 
     private void actionDepot(ActionEvent e) {
-        // TODO add your code here
         String nom = textField1.getText();
         Client user = getClient(nom);
 
         if(user != null) {
             depot = new Depot(user, listeClient);
             depot.setVisible(true);
+        } else {
+            label6_status.setForeground(Color.decode(this.colorRed));
+            label6_status.setText("Pas d'utilisateur trouvé.");
         }
     }
 
     private void actionRetrait(ActionEvent e) {
-        // TODO add your code here
         String nom = textField1.getText();
         Client user = getClient(nom);
 
@@ -55,6 +56,9 @@ public class Home extends JFrame {
             retrait.setVisible(true);
 //            label6_status.setForeground(Color.decode(this.colorGreen));
 //            label6_status.setText("Retrait effectué");
+        } else {
+            label6_status.setForeground(Color.decode(this.colorRed));
+            label6_status.setText("Pas d'utilisateur trouvé.");
         }
     }
 
@@ -72,22 +76,22 @@ public class Home extends JFrame {
     }
 
     private void creerClient(ActionEvent e) {
-        // TODO add your code here
         createUser = new CreateUser();
         createUser.setVisible(true);
     }
 
     private void actionVirement(ActionEvent e) {
-        // TODO add your code here
         String nom = textField1.getText();
         Client user = getClient(nom);
 
         if (user != null) {
-            // todo add message d'erreur
             transfert = new Transfert(user, listeClient);
             transfert.setVisible(true);
 //            label6_status.setForeground(Color.decode(this.colorGreen));
 //            label6_status.setText("Virement effectué");
+        } else {
+            label6_status.setForeground(Color.decode(this.colorRed));
+            label6_status.setText("Pas d'utilisateur trouvé.");
         }
     }
 
@@ -246,12 +250,12 @@ public class Home extends JFrame {
     }
 
     public void afficherClient(ActionEvent e) {
-        // TODO add your code here
         String nom = textField1.getText();
         Client user = getClient(nom);
 
         if (user == null) {
-            // todo add message d'erreur
+            label6_status.setForeground(Color.decode(this.colorRed));
+            label6_status.setText("Pas d'utilisateur trouvé.");
             return;
         }
 

@@ -140,7 +140,6 @@ public class Retrait extends JFrame {
     }
 
     private void valideRetrait(ActionEvent e) {
-        // TODO add your code here
         String montant = textField1.getText();
 
         int convertStringToInt = Integer.parseInt(montant);

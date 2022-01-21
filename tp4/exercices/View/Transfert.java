@@ -139,7 +139,6 @@ public class Transfert extends JFrame {
     }
 
     private void valideTransfert(ActionEvent e) {
-        // TODO add your code here
         String nomCreancier = textField1.getText();
         String nomBeneficiaire = textField2.getText();
         String montant = textField3.getText();
@@ -153,7 +152,7 @@ public class Transfert extends JFrame {
             return;
         }
 
-        if (-nom.getMontant() <= (solde - convertStringToInt)) { // todo check
+        if (-nom.getMontant() <= (solde - convertStringToInt)) {
             nom.setSolde(convertStringToInt, "retrait");
             isExistBenef.setSolde(convertStringToInt, "depot");
             Home.transfert.setVisible(false);
