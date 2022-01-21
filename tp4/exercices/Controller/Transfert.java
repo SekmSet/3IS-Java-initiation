@@ -134,7 +134,8 @@ public class Transfert extends JFrame {
         }
 
         if (-nom.getMontant() <= (solde - convertStringToInt)) {
-            nom.setSolde(convertStringToInt, "retrait");
+//            nom.setSolde(convertStringToInt, "retrait");
+            nom.setSolde(convertStringToInt, "transfer");
             isExistBenef.setSolde(convertStringToInt, "depot");
             Home.transfert.setVisible(false);
 

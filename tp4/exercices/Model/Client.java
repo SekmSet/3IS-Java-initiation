@@ -50,6 +50,8 @@ public class Client {
     public void setSolde(int montant, String action) {
         if (action.equals("retrait")){
             this.solde = this.solde - montant;
+        } else if (action.equals("transfer")) {
+            this.solde = this.solde - (montant + 3);
         } else {
             this.solde = this.solde + montant;
         }
