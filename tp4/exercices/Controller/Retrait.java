@@ -2,7 +2,7 @@
  * Created by JFormDesigner on Thu Jan 20 10:17:34 CET 2022
  */
 
-package exercices.View;
+package exercices.Controller;
 
 import exercices.Model.Client;
 import net.miginfocom.swing.MigLayout;

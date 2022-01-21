@@ -2,7 +2,7 @@
  * Created by JFormDesigner on Fri Jan 21 15:11:57 CET 2022
  */
 
-package exercices.View;
+package exercices.Controller;
 
 import java.awt.*;
 import java.util.ArrayList;

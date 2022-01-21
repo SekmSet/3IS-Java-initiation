@@ -2,7 +2,7 @@
  * Created by JFormDesigner on Thu Jan 20 09:44:41 CET 2022
  */
 
-package exercices.View;
+package exercices.Controller;
 
 import exercices.Model.Bank;
 import exercices.Model.Client;
@@ -12,7 +12,6 @@ import net.miginfocom.swing.MigLayout;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
-import java.time.LocalDate;
 import java.util.ArrayList;
 
 /**
