@@ -124,8 +124,7 @@ public class Transfert extends JFrame {
             return;
         }
 
-        if (-client.getMontant() <= (this.client.getSolde() - convertStringToInt)) {
-//            nom.setSolde(convertStringToInt, "retrait");
+        if (-client.getMontant() <= (this.client.getSolde() - convertStringToInt) && (-client.getMontant() <= (this.client.getSolde() - convertStringToInt + 3))) {
             client.setSolde(convertStringToInt, "transfer");
             isExistBenef.setSolde(convertStringToInt, "depot");
             Home.transfert.setVisible(false);
